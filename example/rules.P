@@ -37,7 +37,7 @@ primitive(dataInAsset(_asset, _data)).
 /* The attacker has physical access to the host */
 primitive(hasPhysicalAccess(_attacker, _host)).
 
-/* 
+/*
 primitive(overWorking(_user)).
 primitive(unSkilled(_user)).
 */
