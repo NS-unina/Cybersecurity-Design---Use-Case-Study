@@ -1,26 +1,32 @@
-isDataStorage(elastic_search).
-isPublic(elastic_search).
-hasPhysicalAccess(Attacker, elastic_search).
+isDataStorage(elasticSearch).
+isPublic(elasticSearch).
+hasPhysicalAccess(Attacker, elasticSearch).
 noWeb('sqli').
-vulExists(elastic_search, 'sqli', code_exec).
-
-
-
-/* Global threat probability */
-tid01(_).
-tid02(_).
-tid03(_).
-tid04(_).
-tid05(_).
-tid06(_).
-tid08(_).
-tid10(_).
-tid11(_).
-tid13(_).
-tid15(_).
-tid17(_).
-tid23(_).
+vulExists(elasticSearch, 'sqli', codeExec). /* sqli = sql injection */
 
 attackGoal(dataExfiltration(data, _)).
 attackGoal(ransomwareAttack(_)).
 
+/* Variables must start with an uppercase letter, and constants must start with a lowercase letter. */
+
+/* non lasciare spazi prima dell'apertura delle parentesi tonde e non usare i doppu apici altrimenti restituisce un errore */
+
+/* precondizioni rappresentate da rettangoli, postcondizioni rappresentate da rombi e regole di interazione rappresentate da ovali */
+
+/*
+
+    ASSETS:
+
+        Telefoni aziendali --- phishing, data exflitration, ransomware, dos
+        PC aziendali --- phishing, data exflitration, ransomware, dos
+        Access Points --- dos
+        Lettori di badge --- data exflitration, dos
+        Firewall/Router/Switch --- dos
+        Database Server (SAP) --- SQL Injection, tampering
+        Stampanti --- dos, data exflitration
+        Lettori di codice a barre --- dos
+        SAN e NAS --- data exfiltration
+        Application server (Web app esposte privatamente) --- dos
+        Website (alacorporation.com) --- XSS attack
+
+*/
