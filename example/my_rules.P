@@ -2,41 +2,20 @@
 /****                 Predicate declarations                 *****/
 /*****************************************************************/
 
-/* The employee is not able to understand the security impacts of his/her actions */
-primitive(unawareness(_victim)).
+/* Data are located in the asset */
+primitive(dataInAsset(_asset, _data)).
 
-/* The employee has a mail account */
-primitive(hasMailAccount(_victim)).
-
-/* The employee is sending an email */
-primitive(isSendingMail(_victim, _content)).
-
-/* The employee uses social media at work */
-primitive(useSocial(_victim)).
-
-/* Consequences could be data disclosure or remote code execution */
-primitive(vulExists(_host, _vulID, _privilege)).
-primitive(vulAllowsCodeExecution(_vulID)).
-primitive(vulDisclosesData(_vulID)).
-
-/* The host is public */
-primitive(isPublic(_host)).
-
-/* The host is a webserver */
-primitive(isWeb(_vuln)).
-primitive(noWeb(_vuln)).
-
-/* Is a data storage */
-primitive(isDataStorage(_host)).
-
-/* The user administrates the host */
-primitive(isAdminOf(_user, _host)).
+/* Host access-control lists */
+primitive(hacl(_src, _dst, _prot, _port)).
 
 /* The user has access to the host with specific permissions (read or exec) */
 primitive(hasAccess(_user, _host, _permission)).
 
-/* Data are located in the asset */
-primitive(dataInAsset(_asset, _data)).
+/* The employee has breached credentials */
+primitive(hasCredentialBreached(_victim)).
+
+/* The employee has a mail account */
+primitive(hasMailAccount(_victim)).
 
 /* The attacker has physical access to the host */
 primitive(hasPhysicalAccess(_attacker, _host)).
@@ -47,11 +26,37 @@ primitive(humanError(_user)).
 /* The employee has the insiderness property */
 primitive(insiderness(_user)).
 
-/* The employee has breached credentials */
-primitive(hasCredentialBreached(_victim)).
+/* The user administrates the host */
+primitive(isAdminOf(_user, _host)).
+
+/* Is a data storage */
+primitive(isDataStorage(_host)).
+
+/* The host is public */
+primitive(isPublic(_host)).
+
+/* The employee is sending an email */
+primitive(isSendingMail(_victim, _content)).
+
+/* The host is a webserver */
+primitive(isWeb(_vuln)).
+
+/* The host is not a webserver */
+primitive(noWeb(_vuln)).
 
 /* The employee uses a personal password on the host */
 primitive(reusePassword(_victim, _host)).
+
+/* The employee is not able to understand the security impacts of his/her actions */
+primitive(unawareness(_victim)).
+
+/* The employee uses social media at work */
+primitive(useSocial(_victim)).
+
+/* Consequences could be data disclosure or remote code execution */
+primitive(vulAllowsCodeExecution(_vulID)).
+primitive(vulDisclosesData(_vulID)).
+primitive(vulExists(_host, _vulID, _privilege)).
 
 derived(dataExfiltration(_data, _host)).
 derived(denialOfService(_host)).
@@ -215,7 +220,10 @@ interaction_rule(
 
 interaction_rule(
     (tampering(DataTampering, Host) :- insiderness(Employee), isDataStorage(Host), hasAccess(Employee, Host, exec)),
-    rule_desc('Data exfiltration from a company asset', 1)).
+    rule_desc('Data manipulation of a company asset', 1)).
+interaction_rule(
+    (tampering(DataTampering, Host) :- vulExists(Host, Vuln, codeExec), isDataStorage(Host)),
+    rule_desc('Data manipulation of a company asset', 1)).
 
 /****                  unsecureDataStorage                   *****/
 
