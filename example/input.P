@@ -1,15 +1,23 @@
-isDataStorage(elasticSearch).
-isPublic(elasticSearch).
-hasPhysicalAccess(Attacker, elasticSearch).
-noWeb('sqli').
-vulExists(elasticSearch, 'sqli', codeExec). /* sqli = sql injection */
+insiderness(employee).
+isDataStorage(mobilePhone).
+hasAccess(employee, mobilePhone, exec).
 
-attackGoal(dataExfiltration(data, _)).
-attackGoal(ransomwareAttack(_)).
+attackGoal(tampering(data, mobilePhone)). /* data tampering on mobile phone */
+
+unawareness(employee).
+useSocial(employee).
+
+attackGoal(disclosureThroughSocial(data)). /* information disclosure against an employee using his mobile phone */
+
+noWeb(vuln).
+vulExists(mobilePhone, vuln, codeExec).
+execVulnerability(mobilePhone, vuln).
+
+attackGoal(denialOfService(mobilePhone)). /* denial of service againt a mobile phone exploiting a vulnerability */
 
 /* Variables must start with an uppercase letter, and constants must start with a lowercase letter. */
 
-/* non lasciare spazi prima dell'apertura delle parentesi tonde e non usare i doppu apici altrimenti restituisce un errore */
+/* non lasciare spazi prima dell'apertura delle parentesi tonde e non usare i doppi apici altrimenti restituisce un errore */
 
 /* precondizioni rappresentate da rettangoli, postcondizioni rappresentate da rombi e regole di interazione rappresentate da ovali */
 
