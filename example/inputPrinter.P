@@ -1,0 +1,9 @@
+/* printer */
+
+vulExists(printer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+vulExists(printer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+
+attackGoal(denialOfService(printer)).
+attackGoal(dataExfiltration(data, printer)).

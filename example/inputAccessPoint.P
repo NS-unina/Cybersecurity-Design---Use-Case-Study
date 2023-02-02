@@ -1,0 +1,6 @@
+/* access point */
+
+vulExists(accessPoint, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(accessPoint)). /* denial of service against access points (Wi-Fi deauthentication attack) */

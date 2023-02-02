@@ -1,0 +1,15 @@
+/* mobile phone */
+
+insiderness(employee).
+isDataStorage(mobilePhone).
+hasAccess(employee, mobilePhone, exec).
+unawareness(employee).
+useSocial(employee).
+hasMailAccount(employee).
+noWeb(vuln).
+vulExists(mobilePhone, vuln, codeExec).
+
+attackGoal(tampering(data, mobilePhone)). /* data tampering on mobile phones */
+attackGoal(disclosureThroughSocial(data)). /* information disclosure from a mobile phone */
+attackGoal(ransomwareAttack(mobilePhone)). /* ransomware attack against mobile phones */
+attackGoal(denialOfService(mobilePhone)). /* denial of service against a mobile phone exploiting a vulnerability */

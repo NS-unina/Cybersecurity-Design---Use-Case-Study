@@ -1,0 +1,11 @@
+/* personal computer */
+
+vulExists(personalComputer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+vulExists(personalComputer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+isDataStorage(personalComputer).
+
+attackGoal(discloseVulnerability(personalComputer, vulnInformationDisclosure)). /* disclosure vulnerability affecting personal computers */
+attackGoal(ransomwareAttack(personalComputer)). /* ransomware attack against personal computers */
+attackGoal(tampering(data, personalComputer)). /* data tampering on personal computers */

@@ -1,0 +1,10 @@
+/* website */
+
+vulExists(website, vulnCodeExec, codeExec).
+isWeb(vulnCodeExec).
+vulExists(website, vulnInformationDisclosure, informationDisclosure).
+isWeb(vulnInformationDisclosure).
+
+attackGoal(denialOfService(website)).
+attackGoal(webExecVulnerability(website, vulnCodeExec)).
+attackGoal(webDisclosureVulnerability(website, vulnInformationDisclosure)).
