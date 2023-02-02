@@ -1,0 +1,9 @@
+/* NAS */
+
+insiderness(employee).
+isDataStorage(nas).
+hasAccess(employee, nas, exec).
+hasAccess(employee, nas, read).
+
+attackGoal(tampering(data, nas)).
+attackGoal(dataExfiltration(data, nas)).

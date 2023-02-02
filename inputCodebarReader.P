@@ -1,0 +1,6 @@
+/* codebar reader */
+
+vulExists(codebarReader, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(codebarReader)). /* denial of service against codebar readers */

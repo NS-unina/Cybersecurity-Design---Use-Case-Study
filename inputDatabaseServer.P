@@ -1,0 +1,10 @@
+/* database server */
+
+vulExists(databaseServer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+isDataStorage(databaseServer).
+vulExists(databaseServer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+
+attackGoal(tampering(data, databaseServer)). /* data tampering on personal computers exploiting a sql injection vulnerability */
+attackGoal(dataExfiltration(data, databaseServer)). /* data exflitraton from vulnerable database Server */

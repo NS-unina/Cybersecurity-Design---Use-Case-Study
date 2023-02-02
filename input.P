@@ -1,0 +1,134 @@
+/* access point */
+
+vulExists(accessPoint, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(accessPoint)). /* denial of service against access points (Wi-Fi deauthentication attack) */
+
+/* application server */
+
+vulExists(applicationServer, vulnCodeExec, codeExec).
+isWeb(vulnCodeExec).
+vulExists(Host, VulnInformationDisclosure, informationDisclosure).
+isWeb(vulnInformationDisclosure).
+
+attackGoal(denialOfService(applicationServer)).
+attackGoal(dataExfiltration(data, applicationServer)).
+
+/* badge reader */
+
+vulExists(badgeReader, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+vulExists(badgeReader, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+
+attackGoal(dataExfiltration(data, badgeReader)). /* data exflitraton from vulnerable badge reader */
+attackGoal(denialOfService(badgeReader)). /* denial of service against badge readers */
+
+/* codebar reader */
+
+vulExists(codebarReader, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(codebarReader)). /* denial of service against codebar readers */
+
+/* database server */
+
+vulExists(databaseServer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+isDataStorage(databaseServer).
+vulExists(databaseServer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+
+attackGoal(tampering(data, databaseServer)). /* data tampering on personal computers exploiting a sql injection vulnerability */
+attackGoal(dataExfiltration(data, databaseServer)). /* data exflitraton from vulnerable database Server */
+
+/* firewall/router/switch */
+
+vulExists(networkDevice, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(networkDevice)).
+
+/* mobile phone */
+
+insiderness(employee).
+isDataStorage(mobilePhone).
+hasAccess(employee, mobilePhone, exec).
+unawareness(employee).
+useSocial(employee).
+hasMailAccount(employee).
+noWeb(vuln).
+vulExists(mobilePhone, vuln, codeExec).
+
+attackGoal(tampering(data, mobilePhone)). /* data tampering on mobile phones */
+attackGoal(disclosureThroughSocial(data)). /* information disclosure from a mobile phone */
+attackGoal(ransomwareAttack(mobilePhone)). /* ransomware attack against mobile phones */
+attackGoal(denialOfService(mobilePhone)). /* denial of service against a mobile phone exploiting a vulnerability */
+
+/* NAS */
+
+insiderness(employee).
+isDataStorage(nas).
+hasAccess(employee, nas, exec).
+hasAccess(employee, nas, read).
+
+attackGoal(tampering(data, nas)).
+attackGoal(dataExfiltration(data, nas)).
+
+/* personal computer */
+
+vulExists(personalComputer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+vulExists(personalComputer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+isDataStorage(personalComputer).
+
+attackGoal(discloseVulnerability(personalComputer, vulnInformationDisclosure)). /* disclosure vulnerability affecting personal computers */
+attackGoal(ransomwareAttack(personalComputer)). /* ransomware attack against personal computers */
+attackGoal(tampering(data, personalComputer)). /* data tampering on personal computers */
+
+/* printer */
+
+vulExists(printer, vulnCodeExec, codeExec).
+noWeb(vulnCodeExec).
+vulExists(printer, vulnInformationDisclosure, informationDisclosure).
+noWeb(vulnInformationDisclosure).
+
+attackGoal(denialOfService(printer)).
+attackGoal(dataExfiltration(data, printer)).
+
+/* website */
+
+vulExists(website, vulnCodeExec, codeExec).
+isWeb(vulnCodeExec).
+vulExists(website, vulnInformationDisclosure, informationDisclosure).
+isWeb(vulnInformationDisclosure).
+
+attackGoal(denialOfService(website)).
+attackGoal(webExecVulnerability(website, vulnCodeExec)).
+attackGoal(webDisclosureVulnerability(website, vulnInformationDisclosure)).
+
+/* Variables must start with an uppercase letter, and constants must start with a lowercase letter. */
+
+/* non lasciare spazi prima dell'apertura delle parentesi tonde e non usare i doppi apici altrimenti restituisce un errore */
+
+/* precondizioni rappresentate da rettangoli, postcondizioni rappresentate da rombi e regole di interazione rappresentate da ovali */
+
+/*
+
+    ASSETS:
+
+        Telefoni aziendali --- phishing, data exflitration, ransomware, dos
+        PC aziendali --- phishing, data exflitration, ransomware, dos
+        Lettori di codice a barre --- dos
+        Access Points --- dos
+        Lettori di badge --- data exflitration, dos
+        Firewall/Router/Switch --- dos
+        Database Server (SAP) --- SQL Injection, tampering
+        Stampanti --- dos, data exflitration
+        SAN e NAS --- data exfiltration, tampering
+        Application server (Web app esposte privatamente) --- dos, information disclosure
+        Website (alacorporation.com) --- XSS attack, information disclosure
+
+*/

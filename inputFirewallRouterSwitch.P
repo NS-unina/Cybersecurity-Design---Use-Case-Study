@@ -1,0 +1,6 @@
+/* firewall/router/switch */
+
+vulExists(networkDevice, vuln, codeExec).
+noWeb(vuln).
+
+attackGoal(denialOfService(networkDevice)).
