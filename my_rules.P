@@ -1,3 +1,7 @@
+/*****************************************************************/
+/****                 Predicate declarations                 *****/
+/*****************************************************************/
+
 primitive(insiderness(_user)).
 primitive(hasConnettivity(_source, _destination)).
 primitive(hasAccess(_user, _host)).
@@ -29,6 +33,7 @@ derived(remoteCodeExecution(_host)).
 derived(xssAttack(_host)).
 /* derived(sqlInjection(_host)). */
 
+/* Tabling predicates */
 :- table tampering/2.
 :- table phishing/1.
 :- table getDataFromStolenAsset/2.
@@ -44,18 +49,33 @@ derived(xssAttack(_host)).
 
 meta(attackGoal(_)).
 
+/*****************************************************************/
+/****                   Interaction rules                    *****/
+/*****************************************************************/
+
+/****                       tampering                        *****/
+
 interaction_rule(
     (tampering(Data, Host) :- insiderness(User), hasAccess(User, Host), hasDefaultPassword(Host)),
     rule_desc('Data manipulation of a company asset', 1)).
 interaction_rule(
     (tampering(Data, Host) :- insiderness(User), hasAccess(User, Host), hasWeakPassword(Host)),
     rule_desc('Data manipulation of a company asset', 1)).
+
+/****                       phishing                         *****/
+
 interaction_rule(
     (phishing(Host) :- hasConnettivity(Host, Destination), hasAccess(User, Host), hasMailAccount(User), humanError(User)),
     rule_desc('An employee falls victim to a phishing attack', 1)).
+
+/****                 getDataFromStolenAsset                 *****/
+
 interaction_rule(
     (getDataFromStolenAsset(Data, Host) :- stealAsset(Attacker, Host), hasWeakPassword(Host)),
     rule_desc('An attacker steals asset and get the data', 1)).
+
+/****                    dataExflitration                    *****/
+
 interaction_rule(
     (dataExfiltration(Data, Host) :- getDataFromStolenAsset(Data, Host)),
     rule_desc('Data exfiltration from a company asset', 1)).
@@ -63,11 +83,26 @@ interaction_rule(
     (dataExfiltration(Data, Host) :- phishing(Host)),
     rule_desc('Data exfiltration from a company asset', 1)).
 interaction_rule(
+    (dataExfiltration(Data, Host) :- hasAccess(User, Host), insiderness(User)),
+    rule_desc('Data exfiltration from a company asset', 1)).
+
+/****                 informationDisclosure                  *****/
+
+interaction_rule(
+    (informationDisclosure(Data, Host) :- hasConnettivity(Host, Destination), discloseSensitiveData(Host)),
+    rule_desc('Sensitive information errounesly disclosed', 1)).
+interaction_rule(
     (informationDisclosure(Data, Host) :- hasConnettivity(Host, Destination), hasAccess(User, Host), useSocial(User), unawareness(User)),
     rule_desc('Sensitive information errounesly disclosed', 1)).
+
+/****                    ransomwareAttack                    *****/
+
 interaction_rule(
     (ransomwareAttack(Host) :- hasConnettivity(Host, Destination), vulExists(Host, Vuln), vulAllowsCodeExecution(Vuln)),
     rule_desc('Ransomware attack against a target', 1)).
+
+/****                    denialOfService                     *****/
+
 interaction_rule(
     (denialOfService(Host) :- hasConnettivity(Host, Destination), vulExists(Host, Vuln), vulAllowsCodeExecution(Vuln)),
     rule_desc('Denial of service attack against a company asset', 1)).
@@ -77,24 +112,30 @@ interaction_rule(
 interaction_rule(
     (denialOfService(Host) :- remoteCodeExecution(Host)),
     rule_desc('Denial of service attack against a company asset', 1)).
+
+/****                       spoofing                         *****/
+
 interaction_rule(
     (spoofing(Victim, Attacker) :- impersonification(Victim, Attacker), unawareness(User)),
     rule_desc('Spoofing attack to trick a user', 1)).
+
+/****                    credentialTheft                     *****/
+
 interaction_rule(
     (credentialTheft(User) :- spoofing(Victim, Attacker)),
     rule_desc('An attacker steals the credentials of a user', 1)).
+
+/****                  remoteCodeExecution                   *****/
+
 interaction_rule(
     (remoteCodeExecution(Host) :- hasConnettivity(Host, Destination), hacl(Destination, Host, Prot, Port), hasDefaultPassword(Host)),
     rule_desc('An attacker execute code remotely', 1)).
 interaction_rule(
     (remoteCodeExecution(Host) :- hasConnettivity(Host, Destination), hacl(Destination, Host, Prot, Port), hasWeakPassword(Host)),
     rule_desc('An attacker execute code remotely', 1)).
-interaction_rule(
-    (dataExfiltration(Data, Host) :- hasAccess(User, Host), insiderness(User)),
-    rule_desc('Data exfiltration from a company asset', 1)).
-interaction_rule(
-    (informationDisclosure(Data, Host) :- hasConnettivity(Host, Destination), discloseSensitiveData(Host)),
-    rule_desc('Sensitive information errounesly disclosed', 1)).
+
+/****                       xssAttack                        *****/
+
 interaction_rule(
     (xssAttack(Host) :- phishing(Host), vulExists(Host, Vuln), vulAllowsCodeExecution(Vuln), isPublic(Host)),
     rule_desc('Cross-Site Scripting against the website of the company', 1)).

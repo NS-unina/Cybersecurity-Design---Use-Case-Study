@@ -1,136 +1,136 @@
 /* mobile phone */
 
-/* insiderness(employee). */
-/* hasConnettivity(mobilePhone, internet). */
-/* hasAccess(employee, mobilePhone). */
-/* hasMailAccount(employee). */
-/* humanError(employee). */
-/* useSocial(employee). */
-/* unawareness(employee). */
-/* stealAsset(attacker, mobilePhone). */
-/* hasWeakPassword(mobilePhone). */
-/* vulExists(mobilePhone, ransomwareVuln). */
-/* vulAllowsCodeExecution(ransomwareVuln). */
+insiderness(employee).
+hasConnettivity(mobilePhone, internet).
+hasAccess(employee, mobilePhone).
+hasMailAccount(employee).
+humanError(employee).
+useSocial(employee).
+unawareness(employee).
+stealAsset(attacker, mobilePhone).
+hasWeakPassword(mobilePhone).
+vulExists(mobilePhone, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-/* attackGoal(tampering(data, mobilePhone)). */
-/* attackGoal(dataExfiltration(data, mobilePhone)). */
-/* attackGoal(informationDisclosure(data, mobilePhone)). */
-/* attackGoal(ransomwareAttack(mobilePhone)). */
+attackGoal(tampering(data, mobilePhone)).
+attackGoal(dataExfiltration(data, mobilePhone)).
+attackGoal(informationDisclosure(data, mobilePhone)).
+attackGoal(ransomwareAttack(mobilePhone)).
 
 /* personal computer */
 
-/* insiderness(employee). */
-/* hasConnettivity(personalComputer, internet). */
-/* hasAccess(employee, personalComputer). */
-/* hasMailAccount(employee). */
-/* humanError(employee). */
-/* useSocial(employee). */
-/* unawareness(employee). */
-/* stealAsset(attacker, personalComputer). */
-/* hasWeakPassword(personalComputer). */
-/* vulExists(personalComputer, ransomwareVuln). */
-/* vulAllowsCodeExecution(ransomwareVuln). */
+insiderness(employee).
+hasConnettivity(personalComputer, internet).
+hasAccess(employee, personalComputer).
+hasMailAccount(employee).
+humanError(employee).
+useSocial(employee).
+unawareness(employee).
+stealAsset(attacker, personalComputer).
+hasWeakPassword(personalComputer).
+vulExists(personalComputer, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-/* attackGoal(tampering(data, personalComputer)). */
-/* attackGoal(dataExfiltration(data, personalComputer)). */
-/* attackGoal(informationDisclosure(data, personalComputer)). */
-/* attackGoal(ransomwareAttack(personalComputer)). */
+attackGoal(tampering(data, personalComputer)).
+attackGoal(dataExfiltration(data, personalComputer)).
+attackGoal(informationDisclosure(data, personalComputer)).
+attackGoal(ransomwareAttack(personalComputer)).
 
 /* codebar reader */
 
-/* insiderness(employee). */
-/* hasAccess(employee, codebarReader). */
-/* stealAsset(attacker, codebarReader). */
-/* hasWeakPassword(codebarReader). */
-/* hasConnettivity(codebarReader, lan). */
-/* vulExists(codebarReader, dosVuln). */
-/* vulAllowsCodeExecution(dosVuln). */
+insiderness(employee).
+hasAccess(employee, codebarReader).
+stealAsset(attacker, codebarReader).
+hasWeakPassword(codebarReader).
+hasConnettivity(codebarReader, lan).
 
-/* attackGoal(tampering(data, codebarReader)). */
-/* attackGoal(dataExfiltration(data, codebarReader)). */
-/* attackGoal(denialOfService(codebarReader)). */
+attackGoal(dataExfiltration(data, codebarReader)).
+attackGoal(denialOfService(codebarReader)).
 
 /* access point */
 
-/* hasConnettivity(realAccessPoint, lan). */
-/* vulExists(realAccessPoint, deauthAttackVuln). */
-/* vulAllowsCodeExecution(deauthAttackVuln). */
-/* impersonification(realAccessPoint, fakeAccessPoint). */
-/* unawareness(employee). */
+hasConnettivity(realAccessPoint, lan).
+vulExists(realAccessPoint, deauthAttackVuln).
+vulAllowsCodeExecution(deauthAttackVuln).
+impersonification(realAccessPoint, fakeAccessPoint).
+unawareness(employee).
 
-/* attackGoal(denialOfService(realAccessPoint)). */
-/* attackGoal(credentialTheft(employee)). */
+attackGoal(denialOfService(realAccessPoint)).
+attackGoal(credentialTheft(employee)).
 
 /* badge reader */
 
-/* insiderness(employee). */
-/* hasAccess(employee, badgeReader). */
-/* hasDefaultPassword(badgeReader). */
-/* hasConnettivity(badgeReader, lan). */
-/* hacl(lan, badgeReader, tcp, 23). */
+insiderness(employee).
+hasAccess(employee, badgeReader).
+hasDefaultPassword(badgeReader).
+hasConnettivity(badgeReader, lan).
+hacl(lan, badgeReader, tcp, 23).
 
-/* attackGoal(denialOfService(badgeReader)). */
+attackGoal(denialOfService(badgeReader)).
 
 /* firewall / router / switch */
 
-/* hasConnettivity(router, lan). */
-/* hacl(lan, router, tcp, 22). */
-/* hasWeakPassword(router). */
-/* hasConnettivity(firewall, lan). */
-/* hacl(lan, firewall, tcp, 8443). */
+hasConnettivity(router, lan).
+hacl(lan, router, tcp, 22).
+hasWeakPassword(router).
+hasConnettivity(firewall, lan).
+hacl(lan, firewall, tcp, 8443).
 
-/* attackGoal(denialOfService(router)). */
-/* attackGoal(denialOfService(firewall)). */
+attackGoal(denialOfService(router)).
+attackGoal(denialOfService(firewall)).
 
 /* database server */
 
-/* hasAccess(employee, databaseServer). */
-/* insiderness(employee). */
+hasAccess(employee, databaseServer).
+insiderness(employee).
+hasWeakPassword(databaseServer).
 
-/* attackGoal(dataExfiltration(data, databaseServer)). */
+attackGoal(dataExfiltration(data, databaseServer)).
+attackGoal(tampering(data, databaseServer)).
 
 /* printer */
 
-/* hasAccess(employee, printer). */
-/* insiderness(employee). */
-/* hasConnettivity(printer, lan). */
-/* discloseSensitiveData(printer). */
+hasAccess(employee, printer).
+insiderness(employee).
+hasConnettivity(printer, lan).
+discloseSensitiveData(printer).
 
-/* attackGoal(dataExfiltration(data, printer)). */
-/* attackGoal(informationDisclosure(data, printer)). */
+attackGoal(dataExfiltration(data, printer)).
+attackGoal(informationDisclosure(data, printer)).
 
-/* san/nas */
+/* NAS */
 
-/* hasAccess(employee, networkStorage). */
-/* insiderness(employee). */
-/* hasDefaultPassword(networkStorage). */
-/* hasConnettivity(networkStorage, lan). */
-/* vulExists(networkStorage, ransomwareVuln). */
-/* vulAllowsCodeExecution(ransomwareVuln). */
+hasAccess(employee, networkStorage).
+insiderness(employee).
+hasDefaultPassword(networkStorage).
+hasConnettivity(networkStorage, lan).
+vulExists(networkStorage, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-/* attackGoal(dataExfiltration(data, networkStorage)). */
-/* attackGoal(tampering(data, networkStorage)). */
-/* attackGoal(ransomwareAttack(networkStorage)). */
+attackGoal(dataExfiltration(data, networkStorage)).
+attackGoal(tampering(data, networkStorage)).
+attackGoal(ransomwareAttack(networkStorage)).
 
 /* application server */
 
-/* hasConnettivity(applicationServer, lan). */
-/* discloseSensitiveData(applicationServer). */
-/* vulExists(applicationServer, dosVuln). */
-/* vulAllowsCodeExecution(dosVuln). */
+hasConnettivity(applicationServer, lan).
+discloseSensitiveData(applicationServer).
+vulExists(applicationServer, dosVuln).
+vulAllowsCodeExecution(dosVuln).
 
-/* attackGoal(informationDisclosure(data, applicationServer)). */
-/* attackGoal(denialOfService(applicationServer)). */
+attackGoal(informationDisclosure(data, applicationServer)).
+attackGoal(denialOfService(applicationServer)).
 
 /* website */
 
-/* hasConnettivity(website, lan). */
-/* hasAccess(employee, website). */
-/* hasMailAccount(employee). */
-/* humanError(employee). */
-/* vulExists(website, xssVuln). */
-/* vulAllowsCodeExecution(xssVuln). */
-/* discloseSensitiveData(website). */
+hasConnettivity(website, lan).
+hasAccess(employee, website).
+hasMailAccount(employee).
+humanError(employee).
+vulExists(website, xssVuln).
+vulAllowsCodeExecution(xssVuln).
+discloseSensitiveData(website).
+isPublic(website).
 
-/* attackGoal(xssAttack(website)). */
-/* attackGoal(informationDisclosure(data, website)). */
+attackGoal(xssAttack(website)).
+attackGoal(informationDisclosure(data, website)).
