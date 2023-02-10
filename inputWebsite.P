@@ -1,10 +1,13 @@
 /* website */
 
-vulExists(website, vulnCodeExec, codeExec).
-isWeb(vulnCodeExec).
-vulExists(website, vulnInformationDisclosure, informationDisclosure).
-isWeb(vulnInformationDisclosure).
+hasConnettivity(website, lan).
+hasAccess(employee, website).
+hasMailAccount(employee).
+humanError(employee).
+vulExists(website, xssVuln).
+vulAllowsCodeExecution(xssVuln).
+discloseSensitiveData(website).
+isPublic(website).
 
-attackGoal(denialOfService(website)).
-attackGoal(webExecVulnerability(website, vulnCodeExec)).
-attackGoal(webDisclosureVulnerability(website, vulnInformationDisclosure)).
+attackGoal(xssAttack(website)).
+attackGoal(informationDisclosure(data, website)).

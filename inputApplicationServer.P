@@ -1,9 +1,9 @@
 /* application server */
 
-vulExists(applicationServer, vulnCodeExec, codeExec).
-isWeb(vulnCodeExec).
-vulExists(Host, VulnInformationDisclosure, informationDisclosure).
-isWeb(vulnInformationDisclosure).
+hasConnettivity(applicationServer, lan).
+discloseSensitiveData(applicationServer).
+vulExists(applicationServer, dosVuln).
+vulAllowsCodeExecution(dosVuln).
 
+attackGoal(informationDisclosure(data, applicationServer)).
 attackGoal(denialOfService(applicationServer)).
-attackGoal(dataExfiltration(data, applicationServer)).

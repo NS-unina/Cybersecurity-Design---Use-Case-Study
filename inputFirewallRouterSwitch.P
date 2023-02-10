@@ -1,6 +1,10 @@
-/* firewall/router/switch */
+/* firewall / router / switch */
 
-vulExists(networkDevice, vuln, codeExec).
-noWeb(vuln).
+hasConnettivity(router, lan).
+hacl(lan, router, tcp, 22).
+hasWeakPassword(router).
+hasConnettivity(firewall, lan).
+hacl(lan, firewall, tcp, 8443).
 
-attackGoal(denialOfService(networkDevice)).
+attackGoal(denialOfService(router)).
+attackGoal(denialOfService(firewall)).

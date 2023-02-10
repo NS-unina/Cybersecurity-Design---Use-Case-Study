@@ -1,11 +1,18 @@
 /* personal computer */
 
-vulExists(personalComputer, vulnInformationDisclosure, informationDisclosure).
-noWeb(vulnInformationDisclosure).
-vulExists(personalComputer, vulnCodeExec, codeExec).
-noWeb(vulnCodeExec).
-isDataStorage(personalComputer).
+insiderness(employee).
+hasConnettivity(personalComputer, internet).
+hasAccess(employee, personalComputer).
+hasMailAccount(employee).
+humanError(employee).
+useSocial(employee).
+unawareness(employee).
+stealAsset(attacker, personalComputer).
+hasWeakPassword(personalComputer).
+vulExists(personalComputer, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-attackGoal(discloseVulnerability(personalComputer, vulnInformationDisclosure)). /* disclosure vulnerability affecting personal computers */
-attackGoal(ransomwareAttack(personalComputer)). /* ransomware attack against personal computers */
-attackGoal(tampering(data, personalComputer)). /* data tampering on personal computers */
+attackGoal(tampering(data, personalComputer)).
+attackGoal(dataExfiltration(data, personalComputer)).
+attackGoal(informationDisclosure(data, personalComputer)).
+attackGoal(ransomwareAttack(personalComputer)).

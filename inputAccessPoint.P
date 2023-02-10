@@ -1,6 +1,10 @@
 /* access point */
 
-vulExists(accessPoint, vuln, codeExec).
-noWeb(vuln).
+hasConnettivity(realAccessPoint, lan).
+vulExists(realAccessPoint, deauthAttackVuln).
+vulAllowsCodeExecution(deauthAttackVuln).
+impersonification(realAccessPoint, fakeAccessPoint).
+unawareness(employee).
 
-attackGoal(denialOfService(accessPoint)). /* denial of service against access points (Wi-Fi deauthentication attack) */
+attackGoal(denialOfService(realAccessPoint)).
+attackGoal(credentialTheft(employee)).

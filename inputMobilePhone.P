@@ -1,15 +1,18 @@
 /* mobile phone */
 
 insiderness(employee).
-isDataStorage(mobilePhone).
-hasAccess(employee, mobilePhone, exec).
-unawareness(employee).
-useSocial(employee).
+hasConnettivity(mobilePhone, internet).
+hasAccess(employee, mobilePhone).
 hasMailAccount(employee).
-noWeb(vuln).
-vulExists(mobilePhone, vuln, codeExec).
+humanError(employee).
+useSocial(employee).
+unawareness(employee).
+stealAsset(attacker, mobilePhone).
+hasWeakPassword(mobilePhone).
+vulExists(mobilePhone, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-attackGoal(tampering(data, mobilePhone)). /* data tampering on mobile phones */
-attackGoal(disclosureThroughSocial(data)). /* information disclosure from a mobile phone */
-attackGoal(ransomwareAttack(mobilePhone)). /* ransomware attack against mobile phones */
-attackGoal(denialOfService(mobilePhone)). /* denial of service against a mobile phone exploiting a vulnerability */
+attackGoal(tampering(data, mobilePhone)).
+attackGoal(dataExfiltration(data, mobilePhone)).
+attackGoal(informationDisclosure(data, mobilePhone)).
+attackGoal(ransomwareAttack(mobilePhone)).

@@ -1,6 +1,10 @@
 /* codebar reader */
 
-vulExists(codebarReader, vuln, codeExec).
-noWeb(vuln).
+insiderness(employee).
+hasAccess(employee, codebarReader).
+stealAsset(attacker, codebarReader).
+hasWeakPassword(codebarReader).
+hasConnettivity(codebarReader, lan).
 
-attackGoal(denialOfService(codebarReader)). /* denial of service against codebar readers */
+attackGoal(dataExfiltration(data, codebarReader)).
+attackGoal(denialOfService(codebarReader)).

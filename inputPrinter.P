@@ -1,9 +1,9 @@
 /* printer */
 
-vulExists(printer, vulnCodeExec, codeExec).
-noWeb(vulnCodeExec).
-vulExists(printer, vulnInformationDisclosure, informationDisclosure).
-noWeb(vulnInformationDisclosure).
+hasAccess(employee, printer).
+insiderness(employee).
+hasConnettivity(printer, lan).
+discloseSensitiveData(printer).
 
-attackGoal(denialOfService(printer)).
 attackGoal(dataExfiltration(data, printer)).
+attackGoal(informationDisclosure(data, printer)).

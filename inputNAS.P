@@ -1,9 +1,12 @@
-/* NAS */
+/* san/nas */
 
+hasAccess(employee, networkStorage).
 insiderness(employee).
-isDataStorage(nas).
-hasAccess(employee, nas, exec).
-hasAccess(employee, nas, read).
+hasDefaultPassword(networkStorage).
+hasConnettivity(networkStorage, lan).
+vulExists(networkStorage, ransomwareVuln).
+vulAllowsCodeExecution(ransomwareVuln).
 
-attackGoal(tampering(data, nas)).
-attackGoal(dataExfiltration(data, nas)).
+attackGoal(dataExfiltration(data, networkStorage)).
+attackGoal(tampering(data, networkStorage)).
+attackGoal(ransomwareAttack(networkStorage)).
