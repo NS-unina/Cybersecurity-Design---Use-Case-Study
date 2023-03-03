@@ -1,5 +1,7 @@
 /* application server */
 
+hasDefaultPassword(applicationServer).
+hacl(lan, applicationServer, tcp, 80).
 hasConnettivity(applicationServer, lan).
 discloseSensitiveData(applicationServer).
 vulExists(applicationServer, dosVuln).

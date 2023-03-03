@@ -1,0 +1,10 @@
+/* barcode reader */
+
+insiderness(employee).
+hasAccess(employee, codebarReader).
+stealAsset(attacker, codebarReader).
+hasWeakPassword(codebarReader).
+hasConnettivity(codebarReader, lan).
+
+attackGoal(dataExfiltration(data, codebarReader)).
+attackGoal(denialOfService(codebarReader)).

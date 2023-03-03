@@ -138,7 +138,7 @@ interaction_rule(
 
 interaction_rule(
     (xssAttack(Host) :- phishing(Host), vulExists(Host, Vuln), vulAllowsCodeExecution(Vuln), isPublic(Host)),
-    rule_desc('Cross-Site Scripting against the website of the company', 1)).
+    rule_desc('XSS attack against the website of the company', 1)).
 
 /* interaction_rule( */
 /*    (sqlInjection(Host) :- lackOfInputValidation(Host), hasConnetivity(Host, Destination), insiderness(User)), */

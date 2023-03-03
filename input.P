@@ -36,7 +36,7 @@ attackGoal(dataExfiltration(data, personalComputer)).
 attackGoal(informationDisclosure(data, personalComputer)).
 attackGoal(ransomwareAttack(personalComputer)).
 
-/* codebar reader */
+/* barcode reader */
 
 insiderness(employee).
 hasAccess(employee, codebarReader).
@@ -70,11 +70,12 @@ attackGoal(denialOfService(badgeReader)).
 
 /* firewall / router / switch */
 
+hasDefaultPassword(router).
 hasConnettivity(router, lan).
-hacl(lan, router, tcp, 22).
-hasWeakPassword(router).
+hacl(lan, router, tcp, 23).
+hasWeakPassword(firewall).
 hasConnettivity(firewall, lan).
-hacl(lan, firewall, tcp, 8443).
+hacl(lan, firewall, tcp, 22).
 
 attackGoal(denialOfService(router)).
 attackGoal(denialOfService(firewall)).
@@ -98,7 +99,7 @@ discloseSensitiveData(printer).
 attackGoal(dataExfiltration(data, printer)).
 attackGoal(informationDisclosure(data, printer)).
 
-/* NAS */
+/* san/nas */
 
 hasAccess(employee, networkStorage).
 insiderness(employee).
@@ -113,6 +114,8 @@ attackGoal(ransomwareAttack(networkStorage)).
 
 /* application server */
 
+hasDefaultPassword(applicationServer).
+hacl(lan, applicationServer, tcp, 80).
 hasConnettivity(applicationServer, lan).
 discloseSensitiveData(applicationServer).
 vulExists(applicationServer, dosVuln).

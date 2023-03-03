@@ -8,8 +8,8 @@ applicationServer:
 	graph_gen.sh inputApplicationServer.P -v -r my_rules.P
 badgeReader:
 	graph_gen.sh inputBadgeReader.P -v -r my_rules.P
-codebarReader:
-	graph_gen.sh inputCodebarReader.P -v -r my_rules.P
+barcodeReader:
+	graph_gen.sh inputBarcodeReader.P -v -r my_rules.P
 databaseServer:
 	graph_gen.sh inputDatabaseServer.P -v -r my_rules.P
 firewallRouterSwitch:

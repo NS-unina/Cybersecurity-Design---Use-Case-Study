@@ -1,10 +1,11 @@
 /* firewall / router / switch */
 
+hasDefaultPassword(router).
 hasConnettivity(router, lan).
-hacl(lan, router, tcp, 22).
-hasWeakPassword(router).
+hacl(lan, router, tcp, 23).
+hasWeakPassword(firewall).
 hasConnettivity(firewall, lan).
-hacl(lan, firewall, tcp, 8443).
+hacl(lan, firewall, tcp, 22).
 
 attackGoal(denialOfService(router)).
 attackGoal(denialOfService(firewall)).
