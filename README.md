@@ -29,7 +29,7 @@ make badgeReader
 
 To run the code on codebar reader asset only:  
 ```  
-make codebarReader  
+make barcodeReader  
 ```  
 
 To run the code on database server asset only:  
